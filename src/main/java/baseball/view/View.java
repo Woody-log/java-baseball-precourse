@@ -1,6 +1,7 @@
 package baseball.view;
 
 import baseball.model.ResultDto;
+import baseball.type.Command;
 
 public interface View {
 
@@ -9,4 +10,6 @@ public interface View {
     void showResult(final ResultDto resultDto);
 
     void showEnding();
+
+    Command inputCommand();
 }
