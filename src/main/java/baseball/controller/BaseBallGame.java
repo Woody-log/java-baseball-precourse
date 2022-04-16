@@ -49,7 +49,7 @@ public class BaseBallGame implements Game {
 
     private Numbers getNumberForRestart(ResultDto resultDto, boolean isGameOver,
                                         Numbers answerNumbers) {
-        if (resultDto.getStrikeCount() == 3 && isGameOver) {
+        if (resultDto.getStrikeCount() == 3 && !isGameOver) {
             return Numbers.getRandomNumbers();
         }
         return answerNumbers;
