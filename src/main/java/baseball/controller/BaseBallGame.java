@@ -20,7 +20,7 @@ public class BaseBallGame implements Game {
     public void start() {
         Numbers answerNumbers = Numbers.getRandomNumbers();
         boolean isGameOver = false;
-        System.out.println(answerNumbers);
+
         while (!isGameOver) {
             Numbers inputNumbers = drawBall();
             ResultDto resultDto = swingBat(inputNumbers, answerNumbers);
