@@ -11,14 +11,17 @@ import java.util.Set;
 public class Numbers {
 
     private final List<Integer> numberList;
+    private final Set<Integer> numberSet;
 
     public Numbers(String inputString) {
         validate(inputString);
         numberList = convertNumberList(inputString);
+        numberSet = new HashSet<>(numberList);
     }
 
     private Numbers(List<Integer> numberList) {
         this.numberList = numberList;
+        this.numberSet = new HashSet<>(numberList);
     }
 
     public static Numbers getRandomNumbers() {
@@ -27,6 +30,18 @@ public class Numbers {
             set.add(Randoms.pickNumberInRange(1, 9));
         }
         return new Numbers(new ArrayList<>(set));
+    }
+
+    public int size() {
+        return numberList.size();
+    }
+
+    public Integer get(int index) {
+        return numberList.get(index);
+    }
+
+    public boolean contains(Integer number) {
+        return numberSet.contains(number);
     }
 
     private List<Integer> convertNumberList(final String inputString) {
