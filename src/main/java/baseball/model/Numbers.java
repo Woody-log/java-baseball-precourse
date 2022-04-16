@@ -13,13 +13,13 @@ public class Numbers {
     private final List<Integer> numberList;
     private final Set<Integer> numberSet;
 
-    public Numbers(String inputString) {
+    public Numbers(final String inputString) {
         validate(inputString);
         numberList = convertNumberList(inputString);
         numberSet = new HashSet<>(numberList);
     }
 
-    private Numbers(List<Integer> numberList) {
+    private Numbers(final List<Integer> numberList) {
         this.numberList = numberList;
         this.numberSet = new HashSet<>(numberList);
     }
@@ -36,11 +36,11 @@ public class Numbers {
         return numberList.size();
     }
 
-    public Integer get(int index) {
+    public Integer get(final int index) {
         return numberList.get(index);
     }
 
-    public boolean contains(Integer number) {
+    public boolean contains(final Integer number) {
         return numberSet.contains(number);
     }
 

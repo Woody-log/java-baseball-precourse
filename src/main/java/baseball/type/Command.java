@@ -17,7 +17,7 @@ public enum Command {
         commandMapping.put("2", GAME_OVER);
     }
 
-    public static Command getCommand(String commandType) {
+    public static Command getCommand(final String commandType) {
         Command command = commandMapping.get(commandType);
         if (command == null) {
             throw new IllegalArgumentException(ErrorCode.INVALID_COMMAND.getErrorMessage());

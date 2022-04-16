@@ -11,7 +11,7 @@ public class BaseBallGame implements Game {
     private final View view;
     private final Analyzer analyzer;
 
-    public BaseBallGame(View view, Analyzer analyzer) {
+    public BaseBallGame(final View view, final Analyzer analyzer) {
         this.view = view;
         this.analyzer = analyzer;
     }
@@ -34,11 +34,11 @@ public class BaseBallGame implements Game {
         return new Numbers(view.inputString());
     }
 
-    private ResultDto swingBat(Numbers inputNumbers, Numbers answerNumbers) {
+    private ResultDto swingBat(final Numbers inputNumbers, final Numbers answerNumbers) {
         return analyzer.analyze(inputNumbers, answerNumbers);
     }
 
-    private boolean isGameOver(ResultDto resultDto) {
+    private boolean isGameOver(final ResultDto resultDto) {
         if (resultDto.getStrikeCount() == 3) {
             view.showEnding();
             Command command = view.inputCommand();
@@ -47,8 +47,8 @@ public class BaseBallGame implements Game {
         return false;
     }
 
-    private Numbers getNumberForRestart(ResultDto resultDto, boolean isGameOver,
-                                        Numbers answerNumbers) {
+    private Numbers getNumberForRestart(final ResultDto resultDto, final boolean isGameOver,
+                                        final Numbers answerNumbers) {
         if (resultDto.getStrikeCount() == 3 && !isGameOver) {
             return Numbers.getRandomNumbers();
         }
