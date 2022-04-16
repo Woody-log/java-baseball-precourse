@@ -1,6 +1,7 @@
 package baseball.service;
 
 import baseball.model.Numbers;
+import baseball.model.ResultDto;
 
 import java.util.Objects;
 
@@ -24,10 +25,15 @@ public class BaseBallAnalyzer implements Analyzer {
     }
 
     @Override
+    public ResultDto getResult() {
+        return new ResultDto(ballCount, strikeCount);
+    }
+
+    @Override
     public boolean isCorrect() {
         return isAllStrike;
     }
-    
+
     private void countSwing(final Numbers inputNumbers, final Numbers answerNumbers) {
         for (int i = 0; i < inputNumbers.size(); i++) {
             boolean isContains = answerNumbers.contains(inputNumbers.get(i));
