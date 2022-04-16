@@ -5,9 +5,5 @@ import baseball.model.ResultDto;
 
 public interface Analyzer {
 
-    void analyze(final Numbers inputNumbers, final Numbers answerNumbers);
-
-    boolean isCorrect();
-
-    ResultDto getResult();
+    ResultDto analyze(final Numbers inputNumbers, final Numbers answerNumbers);
 }
