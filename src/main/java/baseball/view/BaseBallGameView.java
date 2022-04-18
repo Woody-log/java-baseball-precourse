@@ -10,7 +10,6 @@ public class BaseBallGameView implements View {
     private static final String INPUT_NUMBER_MESSAGE = "숫자를 입력해주세요 : ";
     private static final String GAME_OVER_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
     private static final String INPUT_COMMAND = "게임을 새로 시작혀려면 1, 종료하려면 2를 입력하세요.";
-    private final StringBuilder stringBuilder = new StringBuilder();
 
     @Override
     public String inputString() {
@@ -20,10 +19,8 @@ public class BaseBallGameView implements View {
 
     @Override
     public void showResult(final ResultDto resultDto) {
-        stringBuilder.setLength(0);
         if (!isNothing(resultDto)) {
-            appendResult(resultDto);
-            printlnMessage(stringBuilder.toString());
+            printlnMessage(getResultString(resultDto));
             return;
         }
         printlnMessage(SwingResult.NOTHING.getDescription());
@@ -44,23 +41,27 @@ public class BaseBallGameView implements View {
         return resultDto == null || resultDto.isNothing();
     }
 
-    private void appendResult(final ResultDto resultDto) {
-        appendCount(resultDto.getBallCount(), SwingResult.BALL);
-        appendSpace();
-        appendCount(resultDto.getStrikeCount(), SwingResult.STRIKE);
+    private String getResultString(final ResultDto resultDto) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(getCountString(resultDto.getBallCount(), SwingResult.BALL));
+        stringBuilder.append(getSpace(resultDto));
+        stringBuilder.append(getCountString(resultDto.getStrikeCount(), SwingResult.STRIKE));
+
+        return stringBuilder.toString();
     }
 
-    private void appendCount(final Integer count, final SwingResult swingResult) {
+    private String getSpace(ResultDto resultDto) {
+        if (resultDto.getBallCount() != 0 && resultDto.getStrikeCount() != 0) {
+            return " ";
+        }
+        return "";
+    }
+
+    private String getCountString(final Integer count, final SwingResult swingResult) {
         if (count != 0) {
-            stringBuilder.append(count)
-                    .append(swingResult.getDescription());
+            return String.format("%d%s", count, swingResult.getDescription());
         }
-    }
-
-    private void appendSpace() {
-        if (stringBuilder.length() != 0) {
-            stringBuilder.append(" ");
-        }
+        return "";
     }
 
     private void printMessage(String message) {
