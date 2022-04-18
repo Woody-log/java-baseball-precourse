@@ -1,7 +1,6 @@
 package baseball.model;
 
 import baseball.exception.ErrorCode;
-import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,19 +16,6 @@ public class Numbers {
         validate(inputString);
         numberList = convertNumberList(inputString);
         numberSet = new HashSet<>(numberList);
-    }
-
-    private Numbers(final List<Integer> numberList) {
-        this.numberList = numberList;
-        this.numberSet = new HashSet<>(numberList);
-    }
-
-    public static Numbers getRandomNumbers() {
-        Set<Integer> set = new HashSet<>();
-        while (set.size() != 3) {
-            set.add(Randoms.pickNumberInRange(1, 9));
-        }
-        return new Numbers(new ArrayList<>(set));
     }
 
     public int size() {

@@ -4,6 +4,7 @@ import baseball.model.Numbers;
 import baseball.model.ResultDto;
 import baseball.service.Analyzer;
 import baseball.type.Command;
+import baseball.util.AnswerNumbersGenerator;
 import baseball.view.View;
 
 public class BaseBallGame implements Game {
@@ -18,8 +19,8 @@ public class BaseBallGame implements Game {
 
     @Override
     public void start() {
-        Numbers answerNumbers = Numbers.getRandomNumbers();
         boolean isGameOver = false;
+        Numbers answerNumbers = new Numbers(AnswerNumbersGenerator.generate());
 
         while (!isGameOver) {
             Numbers inputNumbers = drawBall();
@@ -50,7 +51,7 @@ public class BaseBallGame implements Game {
     private Numbers getNumberIfRestart(final ResultDto resultDto, final boolean isGameOver,
                                        final Numbers answerNumbers) {
         if (resultDto.getStrikeCount() == 3 && !isGameOver) {
-            return Numbers.getRandomNumbers();
+            return new Numbers(AnswerNumbersGenerator.generate());
         }
         return answerNumbers;
     }
