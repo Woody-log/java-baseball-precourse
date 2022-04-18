@@ -26,7 +26,7 @@ public class BaseBallGame implements Game {
             ResultDto resultDto = swingBat(inputNumbers, answerNumbers);
             view.showResult(resultDto);
             isGameOver = isGameOver(resultDto);
-            answerNumbers = getNumberForRestart(resultDto, isGameOver, answerNumbers);
+            answerNumbers = getNumberIfRestart(resultDto, isGameOver, answerNumbers);
         }
     }
 
@@ -47,8 +47,8 @@ public class BaseBallGame implements Game {
         return false;
     }
 
-    private Numbers getNumberForRestart(final ResultDto resultDto, final boolean isGameOver,
-                                        final Numbers answerNumbers) {
+    private Numbers getNumberIfRestart(final ResultDto resultDto, final boolean isGameOver,
+                                       final Numbers answerNumbers) {
         if (resultDto.getStrikeCount() == 3 && !isGameOver) {
             return Numbers.getRandomNumbers();
         }
