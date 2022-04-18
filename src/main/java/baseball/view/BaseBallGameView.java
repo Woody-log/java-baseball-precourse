@@ -50,7 +50,7 @@ public class BaseBallGameView implements View {
         return stringBuilder.toString();
     }
 
-    private String getSpace(ResultDto resultDto) {
+    private String getSpace(final ResultDto resultDto) {
         if (resultDto.getBallCount() != 0 && resultDto.getStrikeCount() != 0) {
             return " ";
         }
